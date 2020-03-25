@@ -1,20 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Testink :--DD
     </ion-title>
+    <!--<ion-item> TESTING
+      <ion-select [(ngModel)]="cy"  (ionChange)="changePref(amt, cy)" placeholder="EUR">
+        <ion-select-option value="EUR">EUR</ion-select-option>
+        <ion-select-option value="USD">USD</ion-select-option>
+        <ion-select-option value="RUB">RUB</ion-select-option>
+        <ion-select-option value="SEK">SEK</ion-select-option>
+      </ion-select>
+    </ion-item> -->
+      
+  
+  <ion-item>
+    <ion-select [(ngModel)]="amt" (ionChange)="changePref(amt)" placeholder="10">
+      <ion-select-option value="10">10</ion-select-option>
+      <ion-select-option value="20">20</ion-select-option>
+      <ion-select-option value="30">30</ion-select-option>
+      <ion-select-option value="40">40</ion-select-option>
+      <ion-select-option value="50">50</ion-select-option>
+      <ion-select-option value="60">60</ion-select-option>
+      <ion-select-option value="70">70</ion-select-option>
+      <ion-select-option value="80">80</ion-select-option>
+      <ion-select-option value="90">90</ion-select-option>
+      <ion-select-option value="100">100</ion-select-option>
+    </ion-select>
+  </ion-item>
+   
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+  <ion-content>
+    <ion-card *ngFor="let coin of list?.Data">
+      <ion-card-content>
+        <ion-img src="https://www.cryptocompare.com{{coin?.CoinInfo.ImageUrl}}"></ion-img>
+        <ion-card-title>{{coin?.CoinInfo.FullName}}</ion-card-title>
+        <p>{{coin?.CoinInfo.Name}} {{coin?.RAW.EUR.PRICE | number : '1.2-2'}}€</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>

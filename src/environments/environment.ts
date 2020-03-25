@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apikey: "e399ede7bd62a2cb67368f2f1d8ad45ae8bce6deb8d72489ebc3995b4c67c094",
+  apiKey: "e399ede7bd62a2cb67368f2f1d8ad45ae8bce6deb8d72489ebc3995b4c67c094",
   apiUrl: "https://min-api.cryptocompare.com/data/"
 };
 
@@ -16,3 +16,6 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+// https://min-api.cryptocompare.com/data/all/coinlist?e399ede7bd62a2cb67368f2f1d8ad45ae8bce6deb8d72489ebc3995b4c67c094
+// API KEY in URL - just append ? or &api_key={your_api_key} the the end of your request url
