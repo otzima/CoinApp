@@ -31,17 +31,18 @@ export class HomePage implements OnInit {
   }
 
   changePref(amt, cy) {
-    if (cy == Currency.EUR) { //changes the symbol depending on selected currency
-      this.cySymbol = "€";
-    } else if (cy == Currency.USD) {
-      this.cySymbol = "$";
-    } else if (cy == Currency.RUB) {
-      this.cySymbol = "₽";
-    } else if (cy == Currency.SEK) {
-      this.cySymbol = "kr";
-    }
       this.cryptolistService.prefGetCoins(amt, cy).subscribe(data => {
-        this.list = data;
+      if (cy == Currency.EUR) { //changes the symbol depending on selected currency
+      this.cySymbol = "€";
+      } else if (cy == Currency.USD) {
+      this.cySymbol = "$";
+      } else if (cy == Currency.RUB) {
+      this.cySymbol = "₽";
+      } else if (cy == Currency.SEK) {
+      this.cySymbol = "kr";
+      }
+      this.cy = cy;
+      this.list = data;
     }); 
     console.log(cy, amt);
     console.log(this.cy);

@@ -4,7 +4,7 @@
       Testink :--DD
     </ion-title>
     <ion-item> 
-      <ion-select [(ngModel)]="cy" (ionChange)="changePref(amt, cy)" placeholder="EUR">
+      <ion-select [(ngModel)]="cur" (ionChange)="changePref(amt, cur)" placeholder="EUR">
         <ion-select-option value="EUR">EUR</ion-select-option>
         <ion-select-option value="USD">USD</ion-select-option>
         <ion-select-option value="RUB">RUB</ion-select-option>
@@ -40,16 +40,3 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
-
-  <!--<ion-content>
-    <ion-card *ngFor="let coin of list?.Data">
-      <ion-card-content>
-        <ion-img src="https://www.cryptocompare.com{{coin?.CoinInfo.ImageUrl}}"></ion-img>
-        <ion-card-title>{{coin?.CoinInfo.FullName}}</ion-card-title>
-        <p *ngIf="cy === 'EUR'">{{coin?.CoinInfo.Name}} {{coin?.RAW.EUR.PRICE}}€</p>
-        <p *ngIf="cy === 'USD'">{{coin?.CoinInfo.Name}} {{coin?.RAW.USD.PRICE}}$</p>
-        <p *ngIf="cy === 'RUB'"> {{coin?.CoinInfo.Name}} {{coin?.RAW.RUB.PRICE}}₽</p>
-        <p *ngIf="cy === 'SEK'">{{coin?.CoinInfo.Name}} {{coin?.RAW.SEK.PRICE}}kr</p>
-      </ion-card-content>
-    </ion-card>
-  </ion-content>-->
