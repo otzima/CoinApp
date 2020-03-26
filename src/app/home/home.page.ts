@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CryptolistService } from '../cryptolist.service';
+import { CoininfoService } from '../coininfo.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { JsonPipe, CurrencyPipe } from '@angular/common';
 
@@ -22,7 +23,7 @@ export class HomePage implements OnInit {
   cy: Currency = Currency.EUR;
   cySymbol: string;
 
-  constructor(private cryptolistService: CryptolistService, private router: Router) {}
+  constructor(private cryptolistService: CryptolistService, private coininfoService: CoininfoService, private router: Router) {}
 
   ngOnInit() {
     this.amt = "10";
@@ -50,5 +51,13 @@ export class HomePage implements OnInit {
   getPrice(rawData: string) { //unnecessary looping? fix
     //console.log(this.cy);
     return rawData[this.cy]["PRICE"];
+  }
+
+  coinDetail(coin) { //send data to infopage
+    console.log(coin);
+    this.coininfoService.selectedCySymbol = this.cySymbol;
+    this.coininfoService.selectedCur = this.cy;
+    this.coininfoService.selectedCoin = coin; 
+    this.router.navigate(['/coin-info']);
   }
 }

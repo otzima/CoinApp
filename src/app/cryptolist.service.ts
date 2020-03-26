@@ -13,11 +13,6 @@ export class CryptolistService {
 
   constructor(private http: HttpClient) { }
 
-  getCoins() {
-    const list = `${API_URL}top/totaltoptiervolfull?limit=10&tsym=EUR&api_key${API_KEY}`; //variable for limit(10-100) and tsym(EUR,USD etc)
-    return this.http.get(list);
-  }
-
   prefGetCoins(amt, cy) {
     const list = `${API_URL}top/totaltoptiervolfull?limit=${amt}&tsym=${cy}&api_key${API_KEY}`; //variable for limit(10-100) and tsym(EUR,USD etc)
     return this.http.get(list);
