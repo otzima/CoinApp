@@ -3,7 +3,12 @@ import { CryptolistService } from '../cryptolist.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { JsonPipe, CurrencyPipe } from '@angular/common';
 
-
+enum Currency {
+  EUR = "EUR",
+  USD = "USD",
+  RUB = "RUB",
+  SEK = "SEK"
+}
 
 @Component({
   selector: 'app-home',
@@ -13,27 +18,37 @@ import { JsonPipe, CurrencyPipe } from '@angular/common';
 export class HomePage implements OnInit {
 
   list: any;
-  amt: number;
-  cy: any;
+  amt: string;
+  cy: Currency = Currency.EUR;
+  cySymbol: string;
 
   constructor(private cryptolistService: CryptolistService, private router: Router) {}
 
   ngOnInit() {
-    this.cryptolistService.getCoins().subscribe(data => {
-      this.list = data;
-      console.log(this.list);
-    });
+    this.amt = "10";
+    this.changePref(this.amt, this.cy);
   }
 
   changePref(amt, cy) {
-    if(cy == null) {
-      cy = "EUR";
-    } if (amt == null) {
-      amt = 10;
-    } console.log(cy, amt);
+    if (cy == Currency.EUR) { //changes the symbol depending on selected currency
+      this.cySymbol = "€";
+    } else if (cy == Currency.USD) {
+      this.cySymbol = "$";
+    } else if (cy == Currency.RUB) {
+      this.cySymbol = "₽";
+    } else if (cy == Currency.SEK) {
+      this.cySymbol = "kr";
+    }
       this.cryptolistService.prefGetCoins(amt, cy).subscribe(data => {
         this.list = data;
-    });
+    }); 
+    console.log(cy, amt);
+    console.log(this.cy);
+    console.log(this.cySymbol);
   }
 
+  getPrice(rawData: string) { //unnecessary looping? fix
+    //console.log(this.cy);
+    return rawData[this.cy]["PRICE"];
+  }
 }
