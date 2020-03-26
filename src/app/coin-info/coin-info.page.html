@@ -1,10 +1,30 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>CoinInfo</ion-title>
+    <ion-button routerLink="/home">Back</ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-card class="welcome-card">
+    <ion-card-header>
+      <ion-card-subtitle>Historical price of:</ion-card-subtitle>
+      <ion-card-title>{{coin?.CoinInfo.FullName}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barChart></canvas>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-item>
+        <ion-select [(ngModel)]="days" (ionChange)="getTimeline(days)" placeholder="Week">
+          <ion-select-option value="6">Week</ion-select-option>
+          <ion-select-option value="29">Month</ion-select-option>
+          <ion-select-option value="179">6 Months</ion-select-option>
+          <ion-select-option value="364">1 Year</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
   <ion-card>
     <ion-card-content>
       <ion-img src="https://www.cryptocompare.com{{coin?.CoinInfo.ImageUrl}}"></ion-img>

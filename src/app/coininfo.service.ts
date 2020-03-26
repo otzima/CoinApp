@@ -22,10 +22,12 @@ export class CoininfoService {
     return this.http.get(info);
   }
 
-  getDateInfo(): Observable<any> {
-    return
+  getHistoday(fSYM, days, cy): Observable<any> {
+    const data = `${API_URL}v2/histoday?fsym=${fSYM}&tsym=${cy}&limit=${days}&api_key${API_KEY}`
+    return this.http.get(data);
   }
 }
 
+//v2/histoday?fsym=BTC&tsym=USD&limit=10
 
 
