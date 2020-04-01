@@ -11,8 +11,6 @@
         <ion-select-option value="SEK">SEK</ion-select-option>
       </ion-select>
     </ion-item>
-      
-  
   <ion-item>
     <ion-select [(ngModel)]="amt" (ionChange)="changePref(amt, cy)" placeholder="10">
       <ion-select-option value="10">10</ion-select-option>
@@ -27,7 +25,9 @@
       <ion-select-option value="100">100</ion-select-option>
     </ion-select>
   </ion-item>
-   
+  <ion-item>
+    <ion-button routerLink="/search">Search</ion-button>
+  </ion-item>
   </ion-toolbar>
 </ion-header>
 

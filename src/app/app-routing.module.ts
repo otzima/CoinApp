@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'favourites',
     loadChildren: () => import('./favourites/favourites.module').then( m => m.FavouritesPageModule)
   },
+  {
+    path: 'search',
+    loadChildren: () => import('./search/search.module').then( m => m.SearchPageModule)
+  },
 ];
 
 @NgModule({

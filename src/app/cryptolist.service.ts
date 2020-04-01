@@ -17,6 +17,11 @@ export class CryptolistService {
     const list = `${API_URL}top/totaltoptiervolfull?limit=${amt}&tsym=${cy}&api_key${API_KEY}`; //variable for limit(10-100) and tsym(EUR,USD etc)
     return this.http.get(list);
   }
+
+  getAllCoins() {
+    const list = `${API_URL}all/coinlist?api_key=${API_KEY}`;
+    return this.http.get(list);
+  }
 }
 
 

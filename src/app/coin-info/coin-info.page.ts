@@ -73,9 +73,9 @@ export class CoinInfoPage implements OnInit {
           datelist.push(new Date(this.data.Data.Data[i].time*1000).toLocaleDateString()); //pushes information from the api to a js array
           prices.push(this.data.Data.Data[i].close);
           this.createBarChart(datelist, prices);
+          console.log(datelist);
         }
     }); 
-    //console.log(datelist, prices, days);
   }
   
  

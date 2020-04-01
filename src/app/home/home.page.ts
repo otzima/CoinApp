@@ -44,13 +44,10 @@ export class HomePage implements OnInit {
       this.cy = cy;
       this.list = data;
     }); 
-    console.log(cy, amt);
-    console.log(this.cy);
-    console.log(this.cySymbol);
+    console.log(cy, amt, this.cySymbol);
   }
 
-  getPrice(rawData: string) { //unnecessary looping? fix
-    //console.log(this.cy);
+  getPrice(rawData: string) {
     return rawData[this.cy]["PRICE"];
   }
 
