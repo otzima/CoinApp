@@ -6,12 +6,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar></ion-searchbar>
-    <ion-card *ngFor="let coin of list?.Data" (click)="coinDetail(coin)">
+  <ion-searchbar [(ngModel)]="searchText"></ion-searchbar>
+    <ion-card *ngFor="let coin of coinArray | filter: searchText">
       <ion-card-content>
-        <ion-img src="https://www.cryptocompare.com{{coin?.CoinInfo.ImageUrl}}"></ion-img>
-        <ion-card-title>{{coin?.CoinInfo.FullName}}</ion-card-title>
-        <p>{{coin?.CoinInfo.Name}} {{getPrice(coin?.RAW) | number : '1.2-2'}}{{cySymbol}}</p>
+        
+        <ion-card-title>{{coin?.FullName}}</ion-card-title>
+        <!--<p>{{coin?.CoinInfo.Name}} {{getPrice(coin?.RAW) | number : '1.2-2'}}{{cySymbol}}</p>-->
       </ion-card-content>
     </ion-card>
 </ion-content>

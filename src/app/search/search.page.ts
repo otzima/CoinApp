@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CryptolistService } from '../cryptolist.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
+
+ 
 @Component({
   selector: 'app-search',
   templateUrl: './search.page.html',
@@ -10,19 +13,27 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class SearchPage implements OnInit {
 
   list: any;
+  coinArray: any;
+  object: any;
 
   constructor(private cryptolistService: CryptolistService) { }
 
   ngOnInit() {
-    let array = [];
+    this.coinArray = [];
     this.cryptolistService.getAllCoins().subscribe(data => {
-      this.list = data;
-      console.log(this.list.Data);
-        for(let i = 0; i < this.list.Data.length; i++) {
-          array.push(this.list.Data[i]);
-          
-        } console.log(array);
+      const objectNames = Object.getOwnPropertyNames(data['Data']);
+
+      objectNames.forEach(el => {
+        this.object = data['Data'][el];
+        //console.log(this.object);
+        this.coinArray.push(this.object);
+      }); return this.coinArray.sort(this.reOrder);
     });
+    console.log(this.coinArray);
+  }
+
+  reOrder(a ,b) {
+    return a.SortOrder - b.SortOrder;
   }
 
 }
