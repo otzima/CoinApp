@@ -6,11 +6,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchText"></ion-searchbar>
-    <ion-card *ngFor="let coin of coinArray | filter: searchText">
+  <ion-searchbar (ionInput)="filterArray($event)"></ion-searchbar>
+    <ion-card *ngFor="let item of coinArray">
       <ion-card-content>
         
-        <ion-card-title>{{coin?.FullName}}</ion-card-title>
+        <ion-card-title>{{item?.FullName}}</ion-card-title>
         <!--<p>{{coin?.CoinInfo.Name}} {{getPrice(coin?.RAW) | number : '1.2-2'}}{{cySymbol}}</p>-->
       </ion-card-content>
     </ion-card>
