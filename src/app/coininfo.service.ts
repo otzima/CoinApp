@@ -28,6 +28,5 @@ export class CoininfoService {
   }
 }
 
-//v2/histoday?fsym=BTC&tsym=USD&limit=10
 
 
