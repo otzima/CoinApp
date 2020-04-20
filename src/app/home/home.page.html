@@ -6,41 +6,36 @@
     <ion-title>
       Testink :--DD
     </ion-title>
-    <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-select [(ngModel)]="cur" (ionChange)="changePref(amt, cur)" placeholder="EUR">
-            <ion-select-option value="EUR">EUR</ion-select-option>
-            <ion-select-option value="USD">USD</ion-select-option>
-            <ion-select-option value="RUB">RUB</ion-select-option>
-            <ion-select-option value="SEK">SEK</ion-select-option>
-          </ion-select>
-        </ion-col>
-        <ion-col>
-          <ion-select [(ngModel)]="amt" (ionChange)="changePref(amt, cy)" placeholder="10">
-            <ion-select-option value="10">10</ion-select-option>
-            <ion-select-option value="20">20</ion-select-option>
-            <ion-select-option value="30">30</ion-select-option>
-            <ion-select-option value="40">40</ion-select-option>
-            <ion-select-option value="50">50</ion-select-option>
-            <ion-select-option value="60">60</ion-select-option>
-            <ion-select-option value="70">70</ion-select-option>
-            <ion-select-option value="80">80</ion-select-option>
-            <ion-select-option value="90">90</ion-select-option>
-            <ion-select-option value="100">100</ion-select-option>
-          </ion-select>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    <!--
-    <ion-item>
-      <ion-button routerLink="/search">Search</ion-button>
-    </ion-item>
-    -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-select [(ngModel)]="cur" (ionChange)="changePref(amt, cur)" placeholder="EUR">
+          <ion-select-option value="EUR">EUR</ion-select-option>
+          <ion-select-option value="USD">USD</ion-select-option>
+          <ion-select-option value="RUB">RUB</ion-select-option>
+          <ion-select-option value="SEK">SEK</ion-select-option>
+        </ion-select>
+      </ion-col>
+      <ion-col>
+        <ion-select [(ngModel)]="amt" (ionChange)="changePref(amt, cy)" placeholder="10">
+          <ion-select-option value="10">10</ion-select-option>
+          <ion-select-option value="20">20</ion-select-option>
+          <ion-select-option value="30">30</ion-select-option>
+          <ion-select-option value="40">40</ion-select-option>
+          <ion-select-option value="50">50</ion-select-option>
+          <ion-select-option value="60">60</ion-select-option>
+          <ion-select-option value="70">70</ion-select-option>
+          <ion-select-option value="80">80</ion-select-option>
+          <ion-select-option value="90">90</ion-select-option>
+          <ion-select-option value="100">100</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
   <ion-card *ngFor="let coin of list?.Data" (click)="coinDetail(coin)">
     <ion-card-content>
       <ion-img src="https://www.cryptocompare.com{{coin?.CoinInfo.ImageUrl}}"></ion-img>
