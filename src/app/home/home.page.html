@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <!-- THIS IS THE MAIN HEADER WITH ONLY THE HEADING -->
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>
       Testink :--DD
     </ion-title>
@@ -8,41 +11,41 @@
 </ion-header>
 
 
-  <!-- THIS IS THE SEARCH BUTTON IN THE HEADER -->
-  <ion-content>
-    <div id="">
-      <ion-item>
-        <ion-button routerLink="/search">Search</ion-button>
-      </ion-item>
-    </div>
- 
+<!-- THIS IS THE SEARCH BUTTON IN THE HEADER -->
+<ion-content>
+  <div id="">
+    <ion-item>
+      <ion-button routerLink="/search">Search</ion-button>
+    </ion-item>
+  </div>
 
-<!-- THIS IS THE SUBHEADER WITH CURRENCY SETTING AND AMOUNT SETTING -->
- 
-      <ion-item>
-        <ion-select [(ngModel)]="cur" (ionChange)="changePref(amt, cur)" placeholder="EUR">
-          <ion-select-option value="EUR">EUR</ion-select-option>
-          <ion-select-option value="USD">USD</ion-select-option>
-          <ion-select-option value="RUB">RUB</ion-select-option>
-          <ion-select-option value="SEK">SEK</ion-select-option>
-        </ion-select>
-      </ion-item>
-    
-      <ion-item>
-        <ion-select [(ngModel)]="amt" (ionChange)="changePref(amt, cy)" placeholder="10">
-          <ion-select-option value="10">10</ion-select-option>
-          <ion-select-option value="20">20</ion-select-option>
-          <ion-select-option value="30">30</ion-select-option>
-          <ion-select-option value="40">40</ion-select-option>
-          <ion-select-option value="50">50</ion-select-option>
-          <ion-select-option value="60">60</ion-select-option>
-          <ion-select-option value="70">70</ion-select-option>
-          <ion-select-option value="80">80</ion-select-option>
-          <ion-select-option value="90">90</ion-select-option>
-          <ion-select-option value="100">100</ion-select-option>
-        </ion-select>
-      </ion-item>
-  
+
+  <!-- THIS IS THE SUBHEADER WITH CURRENCY SETTING AND AMOUNT SETTING -->
+
+  <ion-item>
+    <ion-select [(ngModel)]="cur" (ionChange)="changePref(amt, cur)" placeholder="EUR">
+      <ion-select-option value="EUR">EUR</ion-select-option>
+      <ion-select-option value="USD">USD</ion-select-option>
+      <ion-select-option value="RUB">RUB</ion-select-option>
+      <ion-select-option value="SEK">SEK</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-select [(ngModel)]="amt" (ionChange)="changePref(amt, cy)" placeholder="10">
+      <ion-select-option value="10">10</ion-select-option>
+      <ion-select-option value="20">20</ion-select-option>
+      <ion-select-option value="30">30</ion-select-option>
+      <ion-select-option value="40">40</ion-select-option>
+      <ion-select-option value="50">50</ion-select-option>
+      <ion-select-option value="60">60</ion-select-option>
+      <ion-select-option value="70">70</ion-select-option>
+      <ion-select-option value="80">80</ion-select-option>
+      <ion-select-option value="90">90</ion-select-option>
+      <ion-select-option value="100">100</ion-select-option>
+    </ion-select>
+  </ion-item>
+
 
 
 
@@ -53,4 +56,5 @@
       <p>{{coin?.CoinInfo.Name}} {{getPrice(coin?.RAW) | number : '1.2-2'}}{{cySymbol}}</p>
     </ion-card-content>
   </ion-card>
+  
 </ion-content>
