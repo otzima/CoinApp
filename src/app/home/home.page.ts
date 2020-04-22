@@ -44,18 +44,18 @@ export class HomePage implements OnInit {
       this.cy = cy;
       this.list = data;
     }); 
-    console.log(cy, amt, this.cySymbol);
   }
 
   getPrice(rawData: string) {
-    return rawData[this.cy]["PRICE"];
+    return rawData["RAW"][this.cy]["PRICE"];
   }
 
   coinDetail(coin) { //send data to infopage
     console.log(coin);
+    this.coininfoService.selectedCoinName = coin.CoinInfo.FullName;
     this.coininfoService.selectedCySymbol = this.cySymbol;
     this.coininfoService.selectedCur = this.cy;
-    this.coininfoService.selectedCoin = coin; 
+    this.coininfoService.selectedCoin = coin.CoinInfo.Name; 
     this.router.navigate(['/coin-info']);
   }
 }

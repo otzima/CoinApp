@@ -11,15 +11,17 @@ const API_KEY = environment.apiKey;
 })
 export class CoininfoService {
   
-  selectedCoin: any;
+  selectedCoin: string;
   selectedCur: any;
   selectedCySymbol: any;
+  selectedCoinName: string;
 
   constructor(private http: HttpClient) { }
 
   getCoinInfo(fSYM, cy): Observable<any> {
-    const info = `${API_URL}pricemultifull?fsyms=${fSYM}&tsyms=${cy}&api_key${API_KEY}`; 
-    return this.http.get(info);
+    const coindata = `${API_URL}pricemultifull?fsyms=${fSYM}&tsyms=${cy}&api_key${API_KEY}`; 
+    //console.log(coindata);
+    return this.http.get(coindata);
   }
 
   getHistoday(fSYM, days, cy): Observable<any> {

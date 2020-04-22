@@ -2,6 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CoininfoService } from '../coininfo.service';
 import { Chart } from 'chart.js';
 
+enum Currency {
+  EUR = "EUR",
+  USD = "USD",
+  RUB = "RUB",
+  SEK = "SEK"
+}
+
 @Component({
   selector: 'app-coin-info',
   templateUrl: './coin-info.page.html',
@@ -11,30 +18,35 @@ export class CoinInfoPage implements OnInit {
   @ViewChild('barChart', { static: true }) barChart;
 
   data: any;
-  coin: any;
-  cy: any;
-  cySymbol: any;
-  bars: any;
-  colorArray: any;
-  days: any;
-  datelist: string;
-  prices: number;
+  fSYM: any; //id of the selected coin (btc, eth, doge etc)
+  cySymbol: any; //symbol of the selected conversion currency
+  bars: any; //chart
+  colorArray: any; //chart
+  days: any; //amount of days for creating the chart
+  datelist: string; //list of dates for creating the chart
+  prices: number; //historical prices
+  coindata: any; //data from the api
+  cy: Currency = Currency.EUR; //currency (EUR/USD/RUB/SEK)
+  CoinName: string; //Name of the coin "Bitcoin"
+  Image: string; //image of the selected coin
+  Price: string; //price
+
   
   constructor(private coininfoService: CoininfoService) { }
 
   ngOnInit() {
-    this.days = "6";
+    this.days = 6;
     this.cySymbol = this.coininfoService.selectedCySymbol;
     this.cy = this.coininfoService.selectedCur;
-    this.coin = this.coininfoService.selectedCoin;
+    this.CoinName = this.coininfoService.selectedCoinName;
+    this.fSYM = this.coininfoService.selectedCoin;
+    this.coininfoService.getCoinInfo(this.fSYM, this.cy).subscribe(data => {
+      this.coindata = data;
+      this.Image = this.coindata.RAW[this.fSYM][this.cy]["IMAGEURL"];
+      this.Price = this.coindata.RAW[this.fSYM][this.cy]["PRICE"];
+    });
     this.createBarChart(this.datelist, this.prices);
     this.getTimeline(this.days);
-    //console.log(this.coin);
-    //console.log(this.cy, this.cySymbol);
-  }
-
-  getPrice(rawData: string) { //unnecessary looping? fix
-    return rawData[this.cy]["PRICE"];
   }
 
   createBarChart(datelist, prices) {
@@ -65,9 +77,8 @@ export class CoinInfoPage implements OnInit {
   getTimeline(days) {
     let datelist = [];
     let prices = [];
-    let fSYM = this.coin.CoinInfo.Name;
     
-    this.coininfoService.getHistoday(fSYM, days, this.cy).subscribe(data => {
+    this.coininfoService.getHistoday(this.fSYM, days, this.cy).subscribe(data => {
       this.data = data;
         for (let i = 0; i < this.data.Data.Data.length; i++) {
           datelist.push(new Date(this.data.Data.Data[i].time*1000).toLocaleDateString()); //pushes information from the api to a js array
@@ -76,7 +87,23 @@ export class CoinInfoPage implements OnInit {
           console.log(datelist);
         }
     }); 
+  }  
+
+  changeConvCurrency(cy) {
+    this.coininfoService.getCoinInfo(this.fSYM, cy).subscribe(data => {
+    if (cy == Currency.EUR) { //changes the symbol depending on selected currency
+    this.cySymbol = "€";
+    } else if (cy == Currency.USD) {
+    this.cySymbol = "$";
+    } else if (cy == Currency.RUB) {
+    this.cySymbol = "₽";
+    } else if (cy == Currency.SEK) {
+    this.cySymbol = "kr";
+    }
+    this.cy = cy;
+    this.coindata = data;
+    this.Price = this.coindata.RAW[this.fSYM][this.cy]["PRICE"];
+    this.getTimeline(this.days);
+    }); 
   }
-  
- 
 }

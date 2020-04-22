@@ -9,7 +9,7 @@
   <ion-card class="welcome-card">
     <ion-card-header>
       <ion-card-subtitle>Historical price of:</ion-card-subtitle>
-      <ion-card-title>{{coin?.CoinInfo.FullName}}</ion-card-title>
+      <ion-card-title>{{CoinName}}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <canvas #barChart></canvas>
@@ -24,12 +24,20 @@
           <ion-select-option value="364">1 Year</ion-select-option>
       </ion-select>
     </ion-item>
-  </ion-card>
-  <ion-card>
+    <ion-item>
+        <ion-select [(ngModel)]="cy" (ionChange)="changeConvCurrency(cy)" placeholder="EUR">
+          <ion-select-option value="EUR">EUR</ion-select-option>
+          <ion-select-option value="USD">USD</ion-select-option>
+          <ion-select-option value="RUB">RUB</ion-select-option>
+          <ion-select-option value="SEK">SEK</ion-select-option>
+    </ion-select>
+    </ion-item>
+    </ion-card>
+    <ion-card>
     <ion-card-content>
-      <ion-img src="https://www.cryptocompare.com{{coin?.CoinInfo.ImageUrl}}"></ion-img>
-      <ion-card-title>{{coin?.CoinInfo.FullName}}</ion-card-title>
-      <p>{{coin?.CoinInfo.Name}} {{getPrice(coin?.RAW) | number : '1.2-2'}}{{cySymbol}}</p>
+      <ion-img src="https://www.cryptocompare.com{{Image}}"></ion-img>
+      <ion-card-title>{{CoinName}} ({{fSYM}})</ion-card-title>
+      <p>{{Price}}{{cySymbol}}</p>
     </ion-card-content>
   </ion-card>
 </ion-content>

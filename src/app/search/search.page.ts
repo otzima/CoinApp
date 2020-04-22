@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CryptolistService } from '../cryptolist.service';
+import { CoininfoService } from '../coininfo.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-search',
@@ -12,10 +14,12 @@ export class SearchPage implements OnInit {
 
   list: any;
   object: any;
+  cySymbol: string;
+  coin: any;
   coinArray:any[]=[];
   coinSearch:any[]=[];
 
-  constructor(private cryptolistService: CryptolistService) { }
+  constructor(private cryptolistService: CryptolistService, private coininfoService: CoininfoService, private router: Router) { }
 
   ngOnInit() {
     this.cryptolistService.getAllCoins().subscribe(data => { //get the list from the api
@@ -27,7 +31,6 @@ export class SearchPage implements OnInit {
       this.coinSearch = this.coinArray;
       return this.coinArray.sort(this.reOrder);
       });
-    console.log(this.coinArray);
   }
 
   reOrder(a ,b) { //simple reorder for the coin list
@@ -38,9 +41,17 @@ export class SearchPage implements OnInit {
     this.coinArray = this.coinSearch;
     const val = ev.target.value;
     if(val && val.trim() != "") {
-      this.coinArray = this.coinSearch.filter((item) => {
-        return (item.FullName.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      this.coinArray = this.coinSearch.filter((coin) => {
+        return (coin.FullName.toLowerCase().indexOf(val.toLowerCase()) > -1);
       });
-    }
+    } console.log(this.coinArray);
+  }
+
+  coinDetail(coin) { //send data to infopage
+    this.coininfoService.selectedCySymbol = "€";
+    this.coininfoService.selectedCur = "EUR";
+    this.coininfoService.selectedCoinName = coin.CoinName; //Name of the coin, "Bitcoin"
+    this.coininfoService.selectedCoin = coin.Name; //Shortening of the name, "BTC"
+    this.router.navigate(['/coin-info']);
   }
 }
