@@ -11,6 +11,7 @@ enum Currency {
   SEK = "SEK"
 }
 
+//test
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',

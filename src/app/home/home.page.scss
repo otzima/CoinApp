@@ -1,3 +1,54 @@
+@import '../../theme/fonts.scss';
+
+ion-title {
+  font-family: Nunito;
+}
+
+ion-button {
+  font-family: Nunito Sans;
+
+}
+
+ion-select-option ion-select {
+  font-family: Nunito Sans;
+
+}
+
+p {
+  font-family: Nunito Sans;
+}
+
+//The place where our objects are in
+.ios.card-content-ios.hydrated{
+  padding: 20px;
+  
+}
+
+// Crypto Image
+.cryptoImage {
+  height: 30px;
+  width: 30px;
+  position: absolute;
+  left: 10px;
+  top: 5px;
+}
+
+// Name of Crypto
+.cryptoTitle {
+  font-size:100%;
+  position: absolute;
+  left: 55px;
+  top: 10px;
+}
+
+// Value of Crypto in currency
+p {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+
 #container {
   text-align: center;
 
