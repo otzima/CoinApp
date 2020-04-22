@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed, inject } from '@angular/core/testing'
 import { IonicModule } from '@ionic/angular';
 import { CoininfoService } from '../coininfo.service';
 import { CoinInfoPage } from './coin-info.page';
-import { DebugElement } from '@angular/core';
+import { DebugElement, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 
@@ -15,6 +15,7 @@ describe('CoinInfoPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ CoinInfoPage ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [
         HttpClientModule
       ],
