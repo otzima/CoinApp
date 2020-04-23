@@ -1,5 +1,7 @@
 {
   "name": "CoinApp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

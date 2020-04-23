@@ -11,7 +11,6 @@ enum Currency {
   SEK = "SEK"
 }
 
-//test
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -19,14 +18,26 @@ enum Currency {
 })
 export class HomePage implements OnInit {
 
+  splash = true;
+  tabBarElement: any;
   list: any;
   amt: string;
   cy: Currency = Currency.EUR;
   cySymbol: string;
 
-  constructor(private cryptolistService: CryptolistService, private coininfoService: CoininfoService, private router: Router) {}
+  constructor(private cryptolistService: CryptolistService, 
+              private coininfoService: CoininfoService, 
+              private router: Router) {
+              this.tabBarElement = document.querySelector('ion-tab-bar');
+              }
 
   ngOnInit() {
+    this.tabBarElement.style.display = 'none';
+    setTimeout(() => {
+      this.splash = false;
+      this.tabBarElement.style.display = 'flex';
+    }, 4000);
+
     this.amt = "10";
     this.changePref(this.amt, this.cy);
   }
@@ -59,4 +70,6 @@ export class HomePage implements OnInit {
     this.coininfoService.selectedCoin = coin.CoinInfo.Name; 
     this.router.navigate(['/coin-info']);
   }
+
+
 }
